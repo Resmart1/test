@@ -1,11 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
 const messageRoutes = require("./routes/message-routes");
-require('dotenv').config();
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 app.use(messageRoutes);
 
@@ -14,6 +11,10 @@ mongoose
 	.then((res) => console.log('Connected to MongoDB'))
 	.catch((err) => console.log(`DB connection error: ${err}`));
 
-app.listen(process.env.PORT, (err) => {
-	err ? console.log(err) : console.log(`listening port ${process.env.PORT}`);
-});
+startStopDaemon(function () {
+	app.listen(process.env.PORT, (err) => {
+		err ? console.log(err) : console.log(`listening port ${process.env.PORT}`);
+	});
+})
+
+
