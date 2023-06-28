@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const messageRoutes = require("./routes/message-routes");
+require('dotenv').config()
 
 const app = express();
 app.use(express.json());
@@ -14,7 +15,5 @@ mongoose
 app.listen(process.env.PORT, (err) => {
 	err ? console.log(err) : console.log(`listening port ${process.env.PORT}`);
 });
-
-setInterval(() => console.log('yes'), 840000);
 
 
