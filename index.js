@@ -15,6 +15,6 @@ app.listen(process.env.PORT, (err) => {
 	err ? console.log(err) : console.log(`listening port ${process.env.PORT}`);
 });
 
-setInterval(console.log('yes'), 840000);
+setInterval(() => console.log('yes'), 840000);
 
 
