@@ -17,30 +17,3 @@ mongoose
 app.listen(process.env.PORT, (err) => {
 	err ? console.log(err) : console.log(`listening port ${process.env.PORT}`);
 });
-
-const chat = express();
-const http = require('http');
-const server = http.createServer(chat);
-const { Server } = require("socket.io");
-const io = new Server(server, {
-	cors: {
-		origin: "http://localhost:3000",
-		methods: ["GET", "POST"],
-	}
-});
-
-io.on('connection', (socket) => {
-	console.log(`a user connected: ${socket.id}`);
-
-	socket.on('send_message', (msg) => {
-		socket.broadcast.emit('recieve_message', msg);
-	});
-
-	socket.on('disconnect', () => {
-		console.log('user disconnected');
-	});
-});
-
-server.listen(8080, () => {
-	console.log('listening on *:8080');
-});
